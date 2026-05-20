@@ -1,17 +1,22 @@
 const endpoint = "http://localhost:3000/productos";
 
-export async function getProductos() {
+export async function obtenerProductos() {
     try {
         const response = await fetch(endpoint);
-        if (!response.ok) throw new Error("Error al obtener los productos");
-        return await response.json();
+        
+        if (response.ok == false) {
+            throw new Error("Error al obtener los productos");
+        } else {
+            return await response.json();
+        }
+
     } catch (error) {
-        console.error("Error en getProductos:", error);
+        console.error("Error en obtenerProductos:", error);
         throw error;
     }
 };
 
-export async function createProducto(producto) {
+export async function crearProducto(producto) {
     try {
         const response = await fetch(endpoint, {
             method: "POST",
@@ -20,15 +25,19 @@ export async function createProducto(producto) {
             },
             body: JSON.stringify(producto)
         });
-        if (!response.ok) throw new Error("Error al crear el producto");
-        return await response.json();
+        
+        if (response.ok == false) {
+            throw new Error("Error al crear el producto");
+        } else {
+            return await response.json();
+        }
     } catch (error) {
-        console.error("Error en createProducto:", error);
+        console.error("Error en crearProducto:", error);
         throw error;
     }
 };
 
-export async function updateProducto(id, producto) {
+export async function actualizarProducto(id, producto) {
     try {
         const response = await fetch(`${endpoint}/${id}`, {
             method: "PUT",
@@ -37,23 +46,31 @@ export async function updateProducto(id, producto) {
             },
             body: JSON.stringify(producto)
         });
-        if (!response.ok) throw new Error("Error al actualizar el producto");
-        return await response.json();
+        
+        if (response.ok == false) {
+            throw new Error("Error al actualizar el producto");
+        } else {
+            return await response.json();
+        }
     } catch (error) {
-        console.error("Error en updateProducto:", error);
+        console.error("Error en actualizarProducto:", error);
         throw error;
     }
 };
 
-export async function deleteProducto(id) {
+export async function eliminarProducto(id) {
     try {
         const response = await fetch(`${endpoint}/${id}`, {
             method: "DELETE"
         });
-        if (!response.ok) throw new Error("Error al eliminar el producto");
-        return true;
+        
+        if (response.ok == false) {
+            throw new Error("Error al eliminar el producto");
+        } else {
+            return true;
+        }
     } catch (error) {
-        console.error("Error en deleteProducto:", error);
+        console.error("Error en eliminarProducto:", error);
         throw error;
     }
 };

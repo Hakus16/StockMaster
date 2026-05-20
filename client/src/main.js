@@ -1,7 +1,7 @@
 import './styles/globals.css';
 import { alertaExitosa } from './utils/alerts';
 import Swal from 'sweetalert2';
-import { getProductos, createProducto, updateProducto, deleteProducto } from './services/productos.service.js';
+import { obtenerProductos, crearProducto, actualizarProducto as srvActualizarProducto, eliminarProducto as srvEliminarProducto } from './services/productos.service.js';
 
 const formulario = document.getElementById("product-form")
 const nombreProducto = document.getElementById("nombre")
@@ -39,7 +39,7 @@ formulario.addEventListener("reset", () => {
 
 async function traeDatos() {
     try {
-        const productos = await getProductos();
+        const productos = await obtenerProductos();
         productosGlobal = productos;
         pintarLosDatos(productos)
         actualizarEstadisticas(productos)
@@ -50,7 +50,7 @@ async function traeDatos() {
 
 async function agregarProducto(producto) {
     try {
-        await createProducto(producto);
+        await crearProducto(producto);
         traeDatos()
         alertaExitosa("Producto agregado exitosamente")
         formulario.reset()
@@ -61,7 +61,7 @@ async function agregarProducto(producto) {
 
 async function actualizarProducto(id, producto) {
     try {
-        await updateProducto(id, producto);
+        await srvActualizarProducto(id, producto);
         traeDatos()
         alertaExitosa("Producto actualizado exitosamente")
         formulario.reset()
@@ -72,7 +72,7 @@ async function actualizarProducto(id, producto) {
 
 async function eliminarProducto(id) {
     try {
-        await deleteProducto(id);
+        await srvEliminarProducto(id);
         traeDatos()
         alertaExitosa("Producto eliminado")
     } catch (error) {
