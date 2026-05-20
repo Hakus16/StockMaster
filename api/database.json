@@ -1,13 +1,6 @@
 {
   "productos": [
     {
-      "id": "001",
-      "nombre": "teclado multicolor",
-      "precioUnidad": 20000,
-      "stock": 9,
-      "descripcion": "teclado inalambrico"
-    },
-    {
       "id": "002",
       "nombre": "mouse",
       "precioUnidad": 5000,
