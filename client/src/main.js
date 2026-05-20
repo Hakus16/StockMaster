@@ -1,8 +1,7 @@
 import './styles/globals.css';
 import { alertaExitosa } from './utils/alerts';
 import Swal from 'sweetalert2';
-
-const endpoint = "http://localhost:3000/productos"
+import { getProductos, createProducto, updateProducto, deleteProducto } from './services/productos.service.js';
 
 const formulario = document.getElementById("product-form")
 const nombreProducto = document.getElementById("nombre")
@@ -40,8 +39,7 @@ formulario.addEventListener("reset", () => {
 
 async function traeDatos() {
     try {
-        const response = await fetch(endpoint)
-        const productos = await response.json()
+        const productos = await getProductos();
         productosGlobal = productos;
         pintarLosDatos(productos)
         actualizarEstadisticas(productos)
@@ -52,21 +50,10 @@ async function traeDatos() {
 
 async function agregarProducto(producto) {
     try {
-        const response = await fetch(endpoint,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body:JSON.stringify(producto)
-            }
-        )
-
-        if (response.ok) {
-            traeDatos()
-            alertaExitosa("Producto agregado exitosamente")
-            formulario.reset()
-        }
+        await createProducto(producto);
+        traeDatos()
+        alertaExitosa("Producto agregado exitosamente")
+        formulario.reset()
     } catch (error) {
         console.error("Error al agregar:", error)
     }
@@ -74,21 +61,10 @@ async function agregarProducto(producto) {
 
 async function actualizarProducto(id, producto) {
     try {
-        const response = await fetch(`${endpoint}/${id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body:JSON.stringify(producto)
-            }
-        )
-
-        if (response.ok) {
-            traeDatos()
-            alertaExitosa("Producto actualizado exitosamente")
-            formulario.reset()
-        }
+        await updateProducto(id, producto);
+        traeDatos()
+        alertaExitosa("Producto actualizado exitosamente")
+        formulario.reset()
     } catch (error) {
         console.error("Error al actualizar:", error)
     }
@@ -96,14 +72,9 @@ async function actualizarProducto(id, producto) {
 
 async function eliminarProducto(id) {
     try {
-        const response = await fetch(`${endpoint}/${id}`, {
-            method: "DELETE"
-        })
-        
-        if (response.ok) {
-            traeDatos()
-            alertaExitosa("Producto eliminado")
-        }
+        await deleteProducto(id);
+        traeDatos()
+        alertaExitosa("Producto eliminado")
     } catch (error) {
         console.error("Error al eliminar:", error)
     }
