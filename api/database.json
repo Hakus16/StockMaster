@@ -48,6 +48,13 @@
       "stock": 10,
       "descripcion": "testeo",
       "id": "8aJYlf3URYs"
+    },
+    {
+      "nombre": "monitor",
+      "precioUnidad": 122,
+      "stock": 122,
+      "descripcion": "testeo",
+      "id": "353fEWLcfkg"
     }
   ],
   "usuarios": [],

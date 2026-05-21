@@ -8,10 +8,14 @@ import { pintarLosDatos } from './ui/renderProductos.js'
 const formulario = document.getElementById("product-form")
 const formTitle = document.getElementById("form-title")
 const submitBtn = formulario.querySelector("button[type='submit']")
+
+// Campos del formulario
 const nombreProducto = document.getElementById("nombre")
 const precioUnidad = document.getElementById("precio")
 const stock = document.getElementById("stock")
 const descripcionProducto = document.getElementById("descripcion")
+
+// Tabla de productos
 const tableBody = document.getElementById("inventory-list")
 
 let editandoId = null
