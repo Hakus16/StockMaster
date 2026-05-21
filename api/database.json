@@ -1,13 +1,6 @@
 {
   "productos": [
     {
-      "id": "002",
-      "nombre": "mouse",
-      "precioUnidad": 5000,
-      "stock": 20,
-      "descripcion": "mouse convencional"
-    },
-    {
       "id": "003",
       "nombre": "monitor",
       "precioUnidad": 20000,
@@ -48,6 +41,13 @@
       "stock": 1,
       "descripcion": "primer iphone con identificacion facial",
       "id": "sFMDMtZivU4"
+    },
+    {
+      "nombre": "test",
+      "precioUnidad": 10,
+      "stock": 10,
+      "descripcion": "testeo",
+      "id": "8aJYlf3URYs"
     }
   ],
   "usuarios": [],
